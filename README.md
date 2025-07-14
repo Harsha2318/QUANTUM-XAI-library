@@ -73,10 +73,13 @@ results = demo.run_complete_demo(dataset='iris', n_samples=80)
 ```python
 from quantum_xai import QuantumNeuralNetwork, QuantumSHAPExplainer, QuantumGradientExplainer, QuantumXAIVisualizer
 from sklearn.model_selection import train_test_split
-from quantum_xai import QuantumDatasetLoader
+from sklearn.datasets import load_iris
 
 # Load data
-X, y, feature_names = QuantumDatasetLoader.load_iris_quantum(n_samples=100)
+data = load_iris()
+X = data.data
+y = data.target
+feature_names = data.feature_names
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Create and train model
