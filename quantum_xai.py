@@ -103,12 +103,15 @@ class QuantumNeuralNetwork:
     """Variational Quantum Classifier (VQC) implementation"""
     
     def __init__(self, n_features: int, n_qubits: int = 4, n_layers: int = 2, 
-                 encoding: str = 'angle', device_name: str = 'default.qubit'):
+                 encoding: str = 'angle', device=None):
         self.n_features = n_features
         self.n_qubits = n_qubits
         self.n_layers = n_layers
         self.encoding = encoding
-        self.device = qml.device(device_name, wires=n_qubits)
+        if device is None:
+            self.device = qml.device('default.qubit', wires=n_qubits)
+        else:
+            self.device = device
         
         # Initialize parameters
         self.params = self._init_parameters()

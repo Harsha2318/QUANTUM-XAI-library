@@ -80,6 +80,60 @@ X, y, feature_names = QuantumDatasetLoader.load_iris_quantum(n_samples=100)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Create and train model
+model = QuantumNeuralNetwork(n_features=X.shape[1], n_qubits=4, n_layers=2, device="lightning")
+model.train(X_train, y_train, epochs=100, lr=0.1)
+
+# Create explainers
+shap_explainer = QuantumSHAPExplainer(model, X_train)
+gradient_explainer = QuantumGradientExplainer(model)
+
+# Generate explanation for a sample
+explanation = shap_explainer.explain(X_test, 0)
+
+# Visualize explanation
+visualizer = QuantumXAIVisualizer()
+fig = visualizer.plot_feature_importance(explanation, feature_names)
+fig.show()
+```
+
+### Backend Selection
+
+You can select the backend to use by passing the --backend argument to the demo script:
+
+```bash
+python my_test_script.py --backend lightning
+```
+
+Supported backends:
+
+- default: PennyLane's default qubit device
+- lightning: PennyLane's lightning qubit device
+- aer: Qiskit's Aer simulator
+- ibmq: Qiskit's IBMQ simulator
+
+### Quick Start Demo
+
+Run the complete demonstration with the Iris dataset:
+
+```python
+from quantum_xai import QuantumXAIDemo
+
+demo = QuantumXAIDemo()
+results = demo.run_complete_demo(dataset='iris', n_samples=80)
+```
+
+### Custom Model Training and Explanation
+
+```python
+from quantum_xai import QuantumNeuralNetwork, QuantumSHAPExplainer, QuantumGradientExplainer, QuantumXAIVisualizer
+from sklearn.model_selection import train_test_split
+from quantum_xai import QuantumDatasetLoader
+
+# Load data
+X, y, feature_names = QuantumDatasetLoader.load_iris_quantum(n_samples=100)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train model
 model = QuantumNeuralNetwork(n_features=X.shape[1], n_qubits=4, n_layers=2)
 model.train(X_train, y_train, epochs=100, lr=0.1)
 
