@@ -1,6 +1,6 @@
 # Quantum-XAI Library
 
-Quantum-XAI is a comprehensive explainable quantum machine learning library designed to provide interpretability and transparency for quantum neural network models. Inspired by classical explainability tools like SHAP and LIME, Quantum-XAI adapts these concepts to the quantum domain, enabling users to understand and trust quantum model predictions.
+Quantum-XAI is a comprehensive explainable quantum machine learning library designed to provide interpretability and transparency for quantum neural network models. It features a variational quantum classifier with flexible encoding schemes, multiple quantum explainability methods (SHAP, Gradient, LIME, Perturbation), visualization tools, dataset loaders, benchmarking utilities, and advanced research features. The library supports integration with popular quantum platforms and includes extensive documentation, tests, and CI pipelines for robust development and community collaboration.
 
 ## Features
 
@@ -13,10 +13,10 @@ Quantum-XAI is a comprehensive explainable quantum machine learning library desi
 
 ## Installation
 
-Install via pip from PyPI:
+You can install Quantum-XAI via pip:
 
 ```bash
-pip install quantum_xai
+pip install quantum-xai
 ```
 
 Or clone the repository and install dependencies:
@@ -66,8 +66,6 @@ fig = visualizer.plot_feature_importance(explanation, feature_names)
 fig.show()
 ```
 
----
-
 ## Research Applications
 
 - Benchmark quantum vs classical explainability methods
@@ -75,8 +73,6 @@ fig.show()
 - Extend to other quantum platforms (Qiskit, Cirq)
 - Develop advanced quantum-specific explanation metrics
 - Apply to real quantum datasets in chemistry, finance, and more
-
----
 
 ## Project Structure
 
@@ -89,11 +85,9 @@ fig.show()
 - `save_model_and_explanations` / `load_model_and_explanations`: Persistence utilities
 - `QuantumXAIResearch`: Advanced research features
 
----
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
