@@ -6,7 +6,7 @@ setup(
     description='Explainable Quantum Machine Learning Library for interpretable quantum models',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    author='Quantum-XAI Contributors',
+    author='Harsha P, B Manvitha Reddy',
     author_email='harshagowda2318@gmail.com , manvithareddy3004@gmail.com',
     url='https://github.com/Harsha2318/QUANTUM-XAI-library',
     packages=find_packages(),
