@@ -41,34 +41,55 @@ results = demo.run_complete_demo(dataset='iris', n_samples=80)
 ### Custom Model Training
 
 ```python
-from quantum_xai import QuantumNeuralNetwork, QuantumSHAPExplainer
+from quantum_xai import QuantumNeuralNetwork, QuantumSHAPExplainer, QuantumGradientExplainer, QuantumXAIVisualizer
+from sklearn.model_selection import train_test_split
+from quantum_xai import QuantumDatasetLoader
 
-# Load data and create model
-# Train model
-# Generate explanations
+# Load data
+X, y, feature_names = QuantumDatasetLoader.load_iris_quantum(n_samples=100)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train model
+model = QuantumNeuralNetwork(n_features=X.shape[1], n_qubits=4, n_layers=2)
+model.train(X_train, y_train, epochs=100, lr=0.1)
+
+# Create explainers
+shap_explainer = QuantumSHAPExplainer(model, X_train)
+gradient_explainer = QuantumGradientExplainer(model)
+
+# Generate explanation for a sample
+explanation = shap_explainer.explain(X_test, 0)
+
+# Visualize explanation
+visualizer = QuantumXAIVisualizer()
+fig = visualizer.plot_feature_importance(explanation, feature_names)
+fig.show()
 ```
 
-## Documentation
+---
 
-Detailed documentation is available in the `docs/` directory, including:
+## Research Applications
 
-- API reference
-- Tutorials and examples
-- Limitations and known issues
+- Benchmark quantum vs classical explainability methods
+- Analyze quantum Fisher information and entanglement effects
+- Extend to other quantum platforms (Qiskit, Cirq)
+- Develop advanced quantum-specific explanation metrics
+- Apply to real quantum datasets in chemistry, finance, and more
 
-## Testing and CI
+---
 
-Unit and integration tests are included in the `tests/` directory. Continuous integration is set up with GitHub Actions to run tests on every push and pull request.
+## Project Structure
 
-Run tests locally with:
+- `QuantumNeuralNetwork`: Variational quantum classifier model
+- `QuantumExplainer` and subclasses: Explainability methods (SHAP, Gradient, LIME, Perturbation)
+- `QuantumXAIVisualizer`: Visualization utilities
+- `QuantumDatasetLoader`: Dataset loading and preprocessing
+- `QuantumXAIBenchmark`: Benchmarking and evaluation tools
+- `QuantumXAIDemo`: Complete demo and example workflows
+- `save_model_and_explanations` / `load_model_and_explanations`: Persistence utilities
+- `QuantumXAIResearch`: Advanced research features
 
-```bash
-pytest
-```
-
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to the project.
+---
 
 ## License
 
