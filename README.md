@@ -1,65 +1,35 @@
-# Quantum-XAI: Explainable Quantum Machine Learning Library
+# Quantum-XAI Library
 
-Quantum-XAI is a comprehensive, production-ready toolkit for explainable quantum machine learning. It provides a suite of quantum-native explainability methods, quantum neural network models, advanced visualizations, benchmarking tools, and research-grade features to interpret and analyze quantum neural network decisions.
-
----
+Quantum-XAI is a comprehensive explainable quantum machine learning library designed to provide interpretability and transparency for quantum neural network models. Inspired by classical explainability tools like SHAP and LIME, Quantum-XAI adapts these concepts to the quantum domain, enabling users to understand and trust quantum model predictions.
 
 ## Features
 
-- **Quantum Neural Network Models**
-  - Variational Quantum Classifier (VQC) implementation using PennyLane
-  - Supports multiple quantum data encodings: Angle, Amplitude, and IQP encoding
-
-- **Explainability Methods**
-  - Quantum SHAP Explainer: SHAP-like sampling-based explanations
-  - Quantum Gradient Explainer: Gradient-based explanations using parameter-shift rule
-  - Quantum LIME Explainer: LIME-like local surrogate model explanations
-  - Quantum Perturbation Explainer: Feature occlusion based explanations
-
-- **Visualization Tools**
-  - Feature importance bar charts
-  - Side-by-side explanation method comparisons
-  - Quantum circuit diagrams with explanation overlays
-  - Radar charts for quantum feature importance
-
-- **Datasets & Utilities**
-  - Preprocessed quantum-ready datasets: Iris, Wine, Breast Cancer
-  - Dataset loaders with normalization and binary classification options
-
-- **Benchmarking & Evaluation**
-  - Compare multiple explainers on test samples
-  - Compute explanation consistency and quality metrics
-  - Faithfulness, sparsity, stability, and top feature importance analysis
-
-- **Research Extensions**
-  - Quantum Fisher Information matrix computation
-  - Quantum entanglement contribution analysis
-  - Quantum feature interaction analysis beyond classical correlations
-
-- **Save/Load Functionality**
-  - Save trained models and explanations to JSON
-  - Load models and explanations from JSON for reproducibility
-
-- **Complete Demo**
-  - End-to-end demonstration of training, explaining, visualizing, benchmarking, and reporting
-
----
+- Variational Quantum Classifier (VQC) implementation with flexible encoding schemes.
+- Multiple quantum explainability methods including Quantum SHAP, Gradient, LIME, and Perturbation explainers.
+- Visualization tools for feature importance and quantum circuit explanations.
+- Dataset loaders for popular datasets prepared for quantum machine learning.
+- Benchmarking and evaluation utilities for explanation quality and consistency.
+- Comprehensive documentation, examples, and community standards.
 
 ## Installation
 
-Ensure you have Python 3.7+ installed. Install required dependencies:
+Install via pip from PyPI:
 
 ```bash
-pip install pennylane numpy matplotlib seaborn scikit-learn pandas
+pip install quantum_xai
 ```
 
----
+Or clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/Harsha2318/QUANTUM-XAI-library.git
+cd QUANTUM-XAI-library
+pip install -r requirements.txt
+```
 
 ## Usage
 
-### Quick Start Demo
-
-Run the complete demonstration with the Iris dataset:
+### Quick Start Example
 
 ```python
 from quantum_xai import QuantumXAIDemo
@@ -68,18 +38,15 @@ demo = QuantumXAIDemo()
 results = demo.run_complete_demo(dataset='iris', n_samples=80)
 ```
 
-### Custom Model Training and Explanation
+### Custom Model Training
 
 ```python
 from quantum_xai import QuantumNeuralNetwork, QuantumSHAPExplainer, QuantumGradientExplainer, QuantumXAIVisualizer
 from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_iris
+from quantum_xai import QuantumDatasetLoader
 
 # Load data
-data = load_iris()
-X = data.data
-y = data.target
-feature_names = data.feature_names
+X, y, feature_names = QuantumDatasetLoader.load_iris_quantum(n_samples=100)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Create and train model
@@ -126,16 +93,12 @@ fig.show()
 
 ## License
 
-This project is open-source and available for research, publication, and industry use.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+## Acknowledgments
+
+Developed by Quantum-XAI Contributors.
 
 ## Contact
 
-For questions, contributions, or collaborations, please open an issue or pull request on the GitHub repository.
-
----
-
-# Acknowledgments
-
-This library builds upon PennyLane and scikit-learn, leveraging quantum computing and classical ML explainability techniques.
+For questions or support, please open an issue on GitHub.

@@ -19,6 +19,15 @@ lib64/
 parts/
 sdist/
 var/
+<<<<<<< HEAD
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+=======
 wheels/
 *.egg-info/
 .installed.cfg
@@ -27,6 +36,7 @@ wheels/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
+>>>>>>> 4323289536bfedc88d1d39f9de41ccf86115b807
 *.manifest
 *.spec
 
@@ -47,7 +57,10 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+<<<<<<< HEAD
+=======
 cover/
+>>>>>>> 4323289536bfedc88d1d39f9de41ccf86115b807
 
 # Translations
 *.mo
@@ -89,6 +102,17 @@ pipenv.lock
 
 # mypy
 .mypy_cache/
+<<<<<<< HEAD
+
+# VSCode
+.vscode/
+
+# virtual environment
+venv/
+
+# macOS
+.DS_Store
+=======
 .dmypy.json
 dmypy.json
 
@@ -135,3 +159,4 @@ venv.bak/
 .idea/
 *.sublime-project
 *.sublime-workspace
+>>>>>>> 4323289536bfedc88d1d39f9de41ccf86115b807
